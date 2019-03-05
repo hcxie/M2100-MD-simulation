@@ -1,0 +1,5 @@
+
+     thermo 1
+     dump 1 all atom 10 dump.lammpstrj
+	 dump 3 all movie 100 movie.gif  type type adiam 1.5 bond type 0.5
+     dump 2 all image 1000 image.*.png  type type adiam 1.5 bond type 0.5

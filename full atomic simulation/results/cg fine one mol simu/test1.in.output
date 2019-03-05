@@ -1,0 +1,101 @@
+
+     thermo 1
+     dump 1 all atom 10000 dump.lammpstrj
+	 dump 3 all movie 100 movie.gif  type type adiam 1.5 bond type 0.5
+     dump 2 all image 10000 image.*.png  type type adiam 1.5 bond type 0.5
+	 
+	 variable c1x equal x[1]
+	 variable c1y equal y[1]
+	 variable c1z equal z[1]
+	 variable c2x equal x[2]
+	 variable c2y equal y[2]
+	 variable c2z equal z[2]
+	 variable c3x equal x[3]
+	 variable c3y equal y[3]
+	 variable c3z equal z[3]
+	 variable c4x equal x[4]
+	 variable c4y equal y[4]
+	 variable c4z equal z[4]
+	 variable c5x equal x[5]
+	 variable c5y equal y[5]
+	 variable c5z equal z[5]
+	 variable c6x equal x[6]
+	 variable c6y equal y[6]
+	 variable c6z equal z[6]
+	 variable c7x equal x[7]
+	 variable c7y equal y[7]
+	 variable c7z equal z[7]
+	 variable c17x equal x[17]
+	 variable c17y equal y[17]
+	 variable c17z equal z[17]
+	 variable c18x equal x[18]
+	 variable c18y equal y[18]
+	 variable c18z equal z[18]
+	 variable c19x equal x[19]
+	 variable c19y equal y[19]
+	 variable c19z equal z[19]
+	 variable c20x equal x[20]
+	 variable c20y equal y[20]
+	 variable c20z equal z[20]
+	 variable c21x equal x[21]
+	 variable c21y equal y[21]
+	 variable c21z equal z[21]
+	 
+	 variable dist_c1c2 equal ((v_c1x-v_c2x)^2+(v_c1y-v_c2y)^2+(v_c1z-v_c2z)^2)^0.5
+	 variable dist_c2c3 equal ((v_c2x-v_c3x)^2+(v_c2y-v_c3y)^2+(v_c2z-v_c3z)^2)^0.5
+	 variable dist_c3c4 equal ((v_c3x-v_c4x)^2+(v_c3y-v_c4y)^2+(v_c3z-v_c4z)^2)^0.5
+	 variable dist_c4c5 equal ((v_c4x-v_c5x)^2+(v_c4y-v_c5y)^2+(v_c4z-v_c5z)^2)^0.5
+	 variable dist_c18c19 equal ((v_c18x-v_c19x)^2+(v_c18y-v_c19y)^2+(v_c18z-v_c19z)^2)^0.5
+	 variable dist_c19c20 equal ((v_c19x-v_c20x)^2+(v_c19y-v_c20y)^2+(v_c19z-v_c20z)^2)^0.5
+	 
+	 
+
+	 variable scale_c2c1 equal ((v_c1x-v_c2x)^2+(v_c1y-v_c2y)^2+(v_c1z-v_c2z)^2)^0.5
+	 variable scale_c2c3 equal ((v_c3x-v_c2x)^2+(v_c3y-v_c2y)^2+(v_c3z-v_c2z)^2)^0.5
+	 variable c2c1_c2c3 equal (v_c1x-v_c2x)*(v_c3x-v_c2x)+(v_c1y-v_c2y)*(v_c3y-v_c2y)+(v_c1z-v_c2z)*(v_c3z-v_c2z)
+	 variable angle_c1c2c3 equal acos(v_c2c1_c2c3/v_scale_c2c1/v_scale_c2c3)
+
+	 variable scale_c3c2 equal ((v_c2x-v_c3x)^2+(v_c2y-v_c3y)^2+(v_c2z-v_c3z)^2)^0.5
+	 variable scale_c3c4 equal ((v_c4x-v_c3x)^2+(v_c4y-v_c3y)^2+(v_c4z-v_c3z)^2)^0.5
+	 variable c3c2_c3c4 equal (v_c2x-v_c3x)*(v_c4x-v_c3x)+(v_c2y-v_c3y)*(v_c4y-v_c3y)+(v_c2z-v_c3z)*(v_c4z-v_c3z)
+	 variable angle_c2c3c4 equal acos(v_c3c2_c3c4/v_scale_c3c2/v_scale_c3c4)
+
+	 variable scale_c4c3 equal ((v_c3x-v_c4x)^2+(v_c3y-v_c4y)^2+(v_c3z-v_c4z)^2)^0.5
+	 variable scale_c4c5 equal ((v_c5x-v_c4x)^2+(v_c5y-v_c4y)^2+(v_c5z-v_c4z)^2)^0.5
+	 variable c4c3_c4c5 equal (v_c3x-v_c4x)*(v_c5x-v_c4x)+(v_c3y-v_c4y)*(v_c5y-v_c4y)+(v_c3z-v_c4z)*(v_c5z-v_c4z)
+	 variable angle_c3c4c5 equal acos(v_c4c3_c4c5/v_scale_c4c3/v_scale_c4c5)
+
+	 variable scale_c6c5 equal ((v_c5x-v_c6x)^2+(v_c5y-v_c6y)^2+(v_c5z-v_c6z)^2)^0.5
+	 variable scale_c6c7 equal ((v_c7x-v_c6x)^2+(v_c7y-v_c6y)^2+(v_c7z-v_c6z)^2)^0.5
+	 variable c6c5_c6c7 equal (v_c5x-v_c6x)*(v_c7x-v_c6x)+(v_c5y-v_c6y)*(v_c7y-v_c6y)+(v_c5z-v_c6z)*(v_c7z-v_c6z)
+	 variable angle_c5c6c7 equal acos(v_c6c5_c6c7/v_scale_c6c5/v_scale_c6c7)
+
+	 variable scale_c18c17 equal ((v_c17x-v_c18x)^2+(v_c17y-v_c18y)^2+(v_c17z-v_c18z)^2)^0.5
+	 variable scale_c18c19 equal ((v_c19x-v_c18x)^2+(v_c19y-v_c18y)^2+(v_c19z-v_c18z)^2)^0.5
+	 variable c18c17_c18c19 equal (v_c17x-v_c18x)*(v_c19x-v_c18x)+(v_c17y-v_c18y)*(v_c19y-v_c18y)+(v_c17z-v_c18z)*(v_c19z-v_c18z)
+	 variable angle_c17c18c19 equal acos(v_c18c17_c18c19/v_scale_c18c17/v_scale_c18c19)
+
+	 variable scale_c19c18 equal ((v_c18x-v_c19x)^2+(v_c18y-v_c19y)^2+(v_c18z-v_c19z)^2)^0.5
+	 variable scale_c19c20 equal ((v_c20x-v_c19x)^2+(v_c20y-v_c19y)^2+(v_c20z-v_c19z)^2)^0.5
+	 variable c19c18_c19c20 equal (v_c18x-v_c19x)*(v_c20x-v_c19x)+(v_c18y-v_c19y)*(v_c20y-v_c19y)+(v_c18z-v_c19z)*(v_c20z-v_c19z)
+	 variable angle_c18c19c20 equal acos(v_c19c18_c19c20/v_scale_c19c18/v_scale_c19c20)
+	 
+	 variable scale_c20c19 equal ((v_c19x-v_c20x)^2+(v_c19y-v_c20y)^2+(v_c19z-v_c20z)^2)^0.5
+	 variable scale_c20c21 equal ((v_c21x-v_c20x)^2+(v_c21y-v_c20y)^2+(v_c21z-v_c20z)^2)^0.5
+	 variable c20c19_c20c21 equal (v_c19x-v_c20x)*(v_c21x-v_c20x)+(v_c19y-v_c20y)*(v_c21y-v_c20y)+(v_c19z-v_c20z)*(v_c21z-v_c20z)
+	 variable angle_c19c20c21 equal acos(v_c20c19_c20c21/v_scale_c20c19/v_scale_c20c21)
+	 
+	 fix 3 all print 10 "${dist_c1c2}" file cdist_c1c2.txt
+	 fix 4 all print 10 "${dist_c2c3}" file cdist_c2c3.txt
+	 fix 5 all print 10 "${dist_c3c4}" file cdist_c3c4.txt
+	 fix 6 all print 10 "${dist_c4c5}" file cdist_c4c5.txt
+	 fix 17 all print 10 "${dist_c18c19}" file cdist_c18c19.txt
+	 fix 18 all print 10 "${dist_c19c20}" file cdist_c19c20.txt
+	 
+	 fix 19 all print 10 "${angle_c1c2c3}" file cangle_c1c2c3.txt
+	 fix 20 all print 10 "${angle_c2c3c4}" file cangle_c2c3c4.txt
+	 fix 21 all print 10 "${angle_c3c4c5}" file cangle_c3c4c5.txt
+	 fix 22 all print 10 "${angle_c5c6c7}" file cangle_c5c6c7.txt
+	 fix 31 all print 10 "${angle_c17c18c19}" file cangle_c17c18c19.txt
+	 fix 32 all print 10 "${angle_c18c19c20}" file cangle_c18c19c20.txt
+	 fix 33 all print 10 "${angle_c19c20c21}" file cangle_c19c20c21.txt

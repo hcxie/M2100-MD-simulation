@@ -1,0 +1,258 @@
+
+units real
+dimension 3
+atom_style angle
+boundary p p p
+
+region box_region block -30 30 -30 30 -30 30
+
+create_box 5 box_region bond/types 16 angle/types 15 extra/bond/per/atom 2 extra/angle/per/atom 2 extra/special/per/atom 10
+
+molecule tempmol M2100CG.ma offset 0 0 0 0 0
+
+create_atoms 0 random 1 33322 box_region mol tempmol 1234
+
+mass 1 27
+mass 2 44
+mass 3 44
+mass 4 76
+mass 5 42
+
+pair_style lj/cut 14
+pair_coeff 1 1 0.1 3.9396
+pair_coeff 1 2 0.1 4.1922
+pair_coeff 1 3 0.1 4.0485
+pair_coeff 1 4 0.1 4.1227
+pair_coeff 1 5 0.1 4.3969
+pair_coeff 2 2 0.1 4.0666
+pair_coeff 2 3 0.1 4.3011
+pair_coeff 2 4 0.1 5.46223
+pair_coeff 2 5 0.1 4.2713
+pair_coeff 3 3 0.1 4.1574
+pair_coeff 3 4 0.1 3.8697
+pair_coeff 3 5 0.1 4.2976
+pair_coeff 4 4 0.1 3.7617
+pair_coeff 4 5 0.1 3.3895
+pair_coeff 5 5 0.1 2.8986
+
+bond_style harmonic
+bond_coeff 1 218.4 1.91
+bond_coeff 2 5.9 3.65
+bond_coeff 3 5.7 3.67
+bond_coeff 4 2.4 3.67
+bond_coeff 5 4.4 3.67
+bond_coeff 6 1.6 3.67
+bond_coeff 7 23.2 3.67
+bond_coeff 8 127.8 2.93
+bond_coeff 9 128.3 2.93
+bond_coeff 10 21.4 3.67
+bond_coeff 11 1.7 3.67
+bond_coeff 12 3.1 3.67
+bond_coeff 13 4.6 3.67
+bond_coeff 14 4.3 3.67
+bond_coeff 16 221.8 1.91
+
+angle_style harmonic
+angle_coeff 1 1.729 146.11
+angle_coeff 2 1.8562 122.63
+angle_coeff 3 1.8287 123.84
+angle_coeff 4 0.6528 138.45
+angle_coeff 5 1.6914 117.25
+angle_coeff 6 1.1002 141.99
+angle_coeff 7 57.4524 161.35
+angle_coeff 8 23.5369 108.67
+angle_coeff 9 59.1608 161.4
+angle_coeff 10 2.1311 139.11
+angle_coeff 11 2.1085 124.99
+angle_coeff 12 1.2840 149.40
+angle_coeff 13 2.0447 119.45
+angle_coeff 14 1.6261 127.60
+angle_coeff 15 2.6748 146.30
+
+#thermo 1
+dump 1 all atom 10 dump.lammpstrj
+dump 3 all movie 100 movie.gif  type type adiam 1.5 bond type 0.5
+dump 2 all image 1000 image.*.png  type type adiam 1.5 bond type 0.5
+
+timestep 1
+minimize 0 0 10000 100000
+fix 2 all nvt temp 300 300 100
+run 500000	 
+
+variable c1x equal x[1]
+variable c1y equal y[1]
+variable c1z equal z[1]
+	 variable c2x equal x[2]
+	 variable c2y equal y[2]
+	 variable c2z equal z[2]
+	 variable c3x equal x[3]
+	 variable c3y equal y[3]
+	 variable c3z equal z[3]
+	 variable c4x equal x[4]
+	 variable c4y equal y[4]
+	 variable c4z equal z[4]
+	 variable c5x equal x[5]
+	 variable c5y equal y[5]
+	 variable c5z equal z[5]
+	 variable c6x equal x[6]
+	 variable c6y equal y[6]
+	 variable c6z equal z[6]
+	 variable c7x equal x[7]
+	 variable c7y equal y[7]
+	 variable c7z equal z[7]
+	 variable c8x equal x[8]
+	 variable c8y equal y[8]
+	 variable c8z equal z[8]
+	 variable c9x equal x[9]
+	 variable c9y equal y[9]
+	 variable c9z equal z[9]
+	 variable c10x equal x[10]
+	 variable c10y equal y[10]
+	 variable c10z equal z[10]
+	 variable c11x equal x[11]
+	 variable c11y equal y[11]
+	 variable c11z equal z[11]
+	 variable c12x equal x[12]
+	 variable c12y equal y[12]
+	 variable c12z equal z[12]
+	 variable c13x equal x[13]
+	 variable c13y equal y[13]
+	 variable c13z equal z[13]
+	 variable c14x equal x[14]
+	 variable c14y equal y[14]
+	 variable c14z equal z[14]
+	 variable c15x equal x[15]
+	 variable c15y equal y[15]
+	 variable c15z equal z[15]
+	 variable c16x equal x[16]
+	 variable c16y equal y[16]
+	 variable c16z equal z[16]
+	 variable c17x equal x[17]
+	 variable c17y equal y[17]
+	 variable c17z equal z[17]
+
+	 variable dist_c1c2 equal ((v_c1x-v_c2x)^2+(v_c1y-v_c2y)^2+(v_c1z-v_c2z)^2)^0.5
+	 variable dist_c2c3 equal ((v_c2x-v_c3x)^2+(v_c2y-v_c3y)^2+(v_c2z-v_c3z)^2)^0.5
+	 variable dist_c3c4 equal ((v_c3x-v_c4x)^2+(v_c3y-v_c4y)^2+(v_c3z-v_c4z)^2)^0.5
+	 variable dist_c4c5 equal ((v_c4x-v_c5x)^2+(v_c4y-v_c5y)^2+(v_c4z-v_c5z)^2)^0.5
+	 variable dist_c5c6 equal ((v_c5x-v_c6x)^2+(v_c5y-v_c6y)^2+(v_c5z-v_c6z)^2)^0.5
+	 variable dist_c6c7 equal ((v_c6x-v_c7x)^2+(v_c6y-v_c7y)^2+(v_c6z-v_c7z)^2)^0.5
+	 variable dist_c7c8 equal ((v_c7x-v_c8x)^2+(v_c7y-v_c8y)^2+(v_c7z-v_c8z)^2)^0.5
+	 variable dist_c8c9 equal ((v_c8x-v_c9x)^2+(v_c8y-v_c9y)^2+(v_c8z-v_c9z)^2)^0.5
+	 variable dist_c9c10 equal ((v_c9x-v_c10x)^2+(v_c9y-v_c10y)^2+(v_c9z-v_c10z)^2)^0.5
+	 variable dist_c10c11 equal ((v_c10x-v_c11x)^2+(v_c10y-v_c11y)^2+(v_c10z-v_c11z)^2)^0.5
+	 variable dist_c11c12 equal ((v_c11x-v_c12x)^2+(v_c11y-v_c12y)^2+(v_c11z-v_c12z)^2)^0.5
+	 variable dist_c12c13 equal ((v_c12x-v_c13x)^2+(v_c12y-v_c13y)^2+(v_c12z-v_c13z)^2)^0.5
+	 variable dist_c13c14 equal ((v_c13x-v_c14x)^2+(v_c13y-v_c14y)^2+(v_c13z-v_c14z)^2)^0.5
+	 variable dist_c14c15 equal ((v_c14x-v_c15x)^2+(v_c14y-v_c15y)^2+(v_c14z-v_c15z)^2)^0.5
+	 variable dist_c15c16 equal ((v_c15x-v_c16x)^2+(v_c15y-v_c16y)^2+(v_c15z-v_c16z)^2)^0.5
+	 variable dist_c16c17 equal ((v_c16x-v_c17x)^2+(v_c16y-v_c17y)^2+(v_c16z-v_c17z)^2)^0.5
+
+	 variable scale_c2c1 equal ((v_c1x-v_c2x)^2+(v_c1y-v_c2y)^2+(v_c1z-v_c2z)^2)^0.5
+	 variable scale_c2c3 equal ((v_c3x-v_c2x)^2+(v_c3y-v_c2y)^2+(v_c3z-v_c2z)^2)^0.5
+	 variable c2c1_c2c3 equal (v_c1x-v_c2x)*(v_c3x-v_c2x)+(v_c1y-v_c2y)*(v_c3y-v_c2y)+(v_c1z-v_c2z)*(v_c3z-v_c2z)
+	 variable angle_c1c2c3 equal acos(v_c2c1_c2c3/v_scale_c2c1/v_scale_c2c3)
+
+	 variable scale_c3c2 equal ((v_c2x-v_c3x)^2+(v_c2y-v_c3y)^2+(v_c2z-v_c3z)^2)^0.5
+	 variable scale_c3c4 equal ((v_c4x-v_c3x)^2+(v_c4y-v_c3y)^2+(v_c4z-v_c3z)^2)^0.5
+	 variable c3c2_c3c4 equal (v_c2x-v_c3x)*(v_c4x-v_c3x)+(v_c2y-v_c3y)*(v_c4y-v_c3y)+(v_c2z-v_c3z)*(v_c4z-v_c3z)
+	 variable angle_c2c3c4 equal acos(v_c3c2_c3c4/v_scale_c3c2/v_scale_c3c4)
+
+	 variable scale_c4c3 equal ((v_c3x-v_c4x)^2+(v_c3y-v_c4y)^2+(v_c3z-v_c4z)^2)^0.5
+	 variable scale_c4c5 equal ((v_c5x-v_c4x)^2+(v_c5y-v_c4y)^2+(v_c5z-v_c4z)^2)^0.5
+	 variable c4c3_c4c5 equal (v_c3x-v_c4x)*(v_c5x-v_c4x)+(v_c3y-v_c4y)*(v_c5y-v_c4y)+(v_c3z-v_c4z)*(v_c5z-v_c4z)
+	 variable angle_c3c4c5 equal acos(v_c4c3_c4c5/v_scale_c4c3/v_scale_c4c5)
+
+	 variable scale_c5c4 equal ((v_c4x-v_c5x)^2+(v_c4y-v_c5y)^2+(v_c4z-v_c5z)^2)^0.5
+	 variable scale_c5c6 equal ((v_c6x-v_c5x)^2+(v_c6y-v_c5y)^2+(v_c6z-v_c5z)^2)^0.5
+	 variable c5c4_c5c6 equal (v_c4x-v_c5x)*(v_c6x-v_c5x)+(v_c4y-v_c5y)*(v_c6y-v_c5y)+(v_c4z-v_c5z)*(v_c6z-v_c5z)
+	 variable angle_c4c5c6 equal acos(v_c5c4_c5c6/v_scale_c5c4/v_scale_c5c6)
+
+	 variable scale_c6c5 equal ((v_c5x-v_c6x)^2+(v_c5y-v_c6y)^2+(v_c5z-v_c6z)^2)^0.5
+	 variable scale_c6c7 equal ((v_c7x-v_c6x)^2+(v_c7y-v_c6y)^2+(v_c7z-v_c6z)^2)^0.5
+	 variable c6c5_c6c7 equal (v_c5x-v_c6x)*(v_c7x-v_c6x)+(v_c5y-v_c6y)*(v_c7y-v_c6y)+(v_c5z-v_c6z)*(v_c7z-v_c6z)
+	 variable angle_c5c6c7 equal acos(v_c6c5_c6c7/v_scale_c6c5/v_scale_c6c7)
+
+	 variable scale_c7c6 equal ((v_c6x-v_c7x)^2+(v_c6y-v_c7y)^2+(v_c6z-v_c7z)^2)^0.5
+	 variable scale_c7c8 equal ((v_c8x-v_c7x)^2+(v_c8y-v_c7y)^2+(v_c8z-v_c7z)^2)^0.5
+	 variable c7c6_c7c8 equal (v_c6x-v_c7x)*(v_c8x-v_c7x)+(v_c6y-v_c7y)*(v_c8y-v_c7y)+(v_c6z-v_c7z)*(v_c8z-v_c7z)
+	 variable angle_c6c7c8 equal acos(v_c7c6_c7c8/v_scale_c7c6/v_scale_c7c8)
+
+	 variable scale_c8c7 equal ((v_c7x-v_c8x)^2+(v_c7y-v_c8y)^2+(v_c7z-v_c8z)^2)^0.5
+	 variable scale_c8c9 equal ((v_c9x-v_c8x)^2+(v_c9y-v_c8y)^2+(v_c9z-v_c8z)^2)^0.5
+	 variable c8c7_c8c9 equal (v_c7x-v_c8x)*(v_c9x-v_c8x)+(v_c7y-v_c8y)*(v_c9y-v_c8y)+(v_c7z-v_c8z)*(v_c9z-v_c8z)
+	 variable angle_c7c8c9 equal acos(v_c8c7_c8c9/v_scale_c8c7/v_scale_c8c9)
+
+	 variable scale_c9c8 equal ((v_c8x-v_c9x)^2+(v_c8y-v_c9y)^2+(v_c8z-v_c9z)^2)^0.5
+	 variable scale_c9c10 equal ((v_c10x-v_c9x)^2+(v_c10y-v_c9y)^2+(v_c10z-v_c9z)^2)^0.5
+	 variable c9c8_c9c10 equal (v_c8x-v_c9x)*(v_c10x-v_c9x)+(v_c8y-v_c9y)*(v_c10y-v_c9y)+(v_c8z-v_c9z)*(v_c10z-v_c9z)
+	 variable angle_c8c9c10 equal acos(v_c9c8_c9c10/v_scale_c9c8/v_scale_c9c10)
+
+	 variable scale_c10c9 equal ((v_c9x-v_c10x)^2+(v_c9y-v_c10y)^2+(v_c9z-v_c10z)^2)^0.5
+	 variable scale_c10c11 equal ((v_c11x-v_c10x)^2+(v_c11y-v_c10y)^2+(v_c11z-v_c10z)^2)^0.5
+	 variable c10c9_c10c11 equal (v_c9x-v_c10x)*(v_c11x-v_c10x)+(v_c9y-v_c10y)*(v_c11y-v_c10y)+(v_c9z-v_c10z)*(v_c11z-v_c10z)
+	 variable angle_c9c10c11 equal acos(v_c10c9_c10c11/v_scale_c10c9/v_scale_c10c11)
+
+	 variable scale_c11c10 equal ((v_c10x-v_c11x)^2+(v_c10y-v_c11y)^2+(v_c10z-v_c11z)^2)^0.5
+	 variable scale_c11c12 equal ((v_c12x-v_c11x)^2+(v_c12y-v_c11y)^2+(v_c12z-v_c11z)^2)^0.5
+	 variable c11c10_c11c12 equal (v_c10x-v_c11x)*(v_c12x-v_c11x)+(v_c10y-v_c11y)*(v_c12y-v_c11y)+(v_c10z-v_c11z)*(v_c12z-v_c11z)
+	 variable angle_c10c11c12 equal acos(v_c11c10_c11c12/v_scale_c11c10/v_scale_c11c12)
+
+	 variable scale_c12c11 equal ((v_c11x-v_c12x)^2+(v_c11y-v_c12y)^2+(v_c11z-v_c12z)^2)^0.5
+	 variable scale_c12c13 equal ((v_c13x-v_c12x)^2+(v_c13y-v_c12y)^2+(v_c13z-v_c12z)^2)^0.5
+	 variable c12c11_c12c13 equal (v_c11x-v_c12x)*(v_c13x-v_c12x)+(v_c11y-v_c12y)*(v_c13y-v_c12y)+(v_c11z-v_c12z)*(v_c13z-v_c12z)
+	 variable angle_c11c12c13 equal acos(v_c12c11_c12c13/v_scale_c12c11/v_scale_c12c13)
+
+	 variable scale_c13c12 equal ((v_c12x-v_c13x)^2+(v_c12y-v_c13y)^2+(v_c12z-v_c13z)^2)^0.5
+	 variable scale_c13c14 equal ((v_c14x-v_c13x)^2+(v_c14y-v_c13y)^2+(v_c14z-v_c13z)^2)^0.5
+	 variable c13c12_c13c14 equal (v_c12x-v_c13x)*(v_c14x-v_c13x)+(v_c12y-v_c13y)*(v_c14y-v_c13y)+(v_c12z-v_c13z)*(v_c14z-v_c13z)
+	 variable angle_c12c13c14 equal acos(v_c13c12_c13c14/v_scale_c13c12/v_scale_c13c14)
+
+	 variable scale_c14c13 equal ((v_c13x-v_c14x)^2+(v_c13y-v_c14y)^2+(v_c13z-v_c14z)^2)^0.5
+	 variable scale_c14c15 equal ((v_c15x-v_c14x)^2+(v_c15y-v_c14y)^2+(v_c15z-v_c14z)^2)^0.5
+	 variable c14c13_c14c15 equal (v_c13x-v_c14x)*(v_c15x-v_c14x)+(v_c13y-v_c14y)*(v_c15y-v_c14y)+(v_c13z-v_c14z)*(v_c15z-v_c14z)
+	 variable angle_c13c14c15 equal acos(v_c14c13_c14c15/v_scale_c14c13/v_scale_c14c15)
+
+	 variable scale_c15c14 equal ((v_c14x-v_c15x)^2+(v_c14y-v_c15y)^2+(v_c14z-v_c15z)^2)^0.5
+	 variable scale_c15c16 equal ((v_c16x-v_c15x)^2+(v_c16y-v_c15y)^2+(v_c16z-v_c15z)^2)^0.5
+	 variable c15c14_c15c16 equal (v_c14x-v_c15x)*(v_c16x-v_c15x)+(v_c14y-v_c15y)*(v_c16y-v_c15y)+(v_c14z-v_c15z)*(v_c16z-v_c15z)
+	 variable angle_c14c15c16 equal acos(v_c15c14_c15c16/v_scale_c15c14/v_scale_c15c16)
+
+	 variable scale_c16c15 equal ((v_c15x-v_c16x)^2+(v_c15y-v_c16y)^2+(v_c15z-v_c16z)^2)^0.5
+	 variable scale_c16c17 equal ((v_c17x-v_c16x)^2+(v_c17y-v_c16y)^2+(v_c17z-v_c16z)^2)^0.5
+	 variable c16c15_c16c17 equal (v_c15x-v_c16x)*(v_c17x-v_c16x)+(v_c15y-v_c16y)*(v_c17y-v_c16y)+(v_c15z-v_c16z)*(v_c17z-v_c16z)
+	 variable angle_c15c16c17 equal acos(v_c16c15_c16c17/v_scale_c16c15/v_scale_c16c17)
+	 
+	 fix 3 all print 10 "${dist_c1c2}" file dist_c1c2.txt
+	 fix 4 all print 10 "${dist_c2c3}" file dist_c2c3.txt
+	 fix 5 all print 10 "${dist_c3c4}" file dist_c3c4.txt
+	 fix 6 all print 10 "${dist_c4c5}" file dist_c4c5.txt
+	 fix 7 all print 10 "${dist_c5c6}" file dist_c5c6.txt
+	 fix 8 all print 10 "${dist_c6c7}" file dist_c6c7.txt
+	 fix 9 all print 10 "${dist_c7c8}" file dist_c7c8.txt
+	 fix 10 all print 10 "${dist_c8c9}" file dist_c8c9.txt
+	 fix 11 all print 10 "${dist_c9c10}" file dist_c9c10.txt
+	 fix 12 all print 10 "${dist_c10c11}" file dist_c10c11.txt
+	 fix 13 all print 10 "${dist_c11c12}" file dist_c11c12.txt
+	 fix 14 all print 10 "${dist_c12c13}" file dist_c12c13.txt
+	 fix 15 all print 10 "${dist_c13c14}" file dist_c13c14.txt
+	 fix 16 all print 10 "${dist_c14c15}" file dist_c14c15.txt
+	 fix 17 all print 10 "${dist_c15c16}" file dist_c15c16.txt
+	 fix 18 all print 10 "${dist_c16c17}" file dist_c16c17.txt
+	 
+	 fix 19 all print 10 "${angle_c1c2c3}" file angle_c1c2c3.txt
+	 fix 20 all print 10 "${angle_c2c3c4}" file angle_c2c3c4.txt
+	 fix 21 all print 10 "${angle_c3c4c5}" file angle_c3c4c5.txt
+	 fix 22 all print 10 "${angle_c4c5c6}" file angle_c4c5c6.txt
+	 fix 23 all print 10 "${angle_c5c6c7}" file angle_c5c6c7.txt
+	 fix 24 all print 10 "${angle_c6c7c8}" file angle_c6c7c8.txt
+	 fix 25 all print 10 "${angle_c7c8c9}" file angle_c7c8c9.txt
+	 fix 26 all print 10 "${angle_c8c9c10}" file angle_c8c9c10.txt
+	 fix 27 all print 10 "${angle_c9c10c11}" file angle_c9c10c11.txt
+	 fix 28 all print 10 "${angle_c10c11c12}" file angle_c10c11c12.txt
+	 fix 29 all print 10 "${angle_c11c12c13}" file angle_c11c12c13.txt
+	 fix 30 all print 10 "${angle_c12c13c14}" file angle_c12c13c14.txt
+	 fix 31 all print 10 "${angle_c13c14c15}" file angle_c13c14c15.txt
+	 fix 32 all print 10 "${angle_c14c15c16}" file angle_c14c15c16.txt
+	 fix 33 all print 10 "${angle_c15c16c17}" file angle_c15c16c17.txt
+	 

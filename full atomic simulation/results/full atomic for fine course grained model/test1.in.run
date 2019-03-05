@@ -1,0 +1,8 @@
+
+ 
+minimize 1.0e-5 1.0e-7 1000 10000 
+timestep 1.0
+fix 2 all nvt temp 300 300 100
+run 150000
+ 
+ 

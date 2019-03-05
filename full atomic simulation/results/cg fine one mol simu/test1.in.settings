@@ -1,0 +1,37 @@
+       #     atom_id      mass         
+        mass 1            27
+        mass 2            28
+        mass 3            16
+        mass 4            12
+		mass 5            76
+		mass 6            42
+        
+
+       #           atom_i       atom_j       epsilon                  sigma                    
+        pair_coeff *      *     0.3 3.6
+        
+        
+
+       #           bond_id     k_harmonic               r0             
+        bond_coeff 1    206 1.9
+        bond_coeff 2    406 1.37
+        bond_coeff 3    360 1.43
+        bond_coeff 4    270 1.52
+        bond_coeff 5    130 2.78
+        bond_coeff 6    146 2.91
+        
+        
+
+       
+
+       #            angle_id     k_harmonic               theta0         
+        angle_coeff 1    6 110
+        angle_coeff 2    60 122
+        angle_coeff 3    59 110
+        angle_coeff 4    50 114
+		angle_coeff 5    52 125
+        angle_coeff 6    25 180
+        angle_coeff 7    20 108
+        
+		special_bonds lj 0.0 0.0 0.0
+        
